@@ -1,0 +1,63 @@
+﻿@model IEnumerable<UserNotes.Models.UserNote>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>NOTLAR</h1>
+
+<p>
+	<a asp-action="Create">Yeni Not Ekle</a>
+</p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				NOTLAR
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		@foreach (var item in Model)
+		{
+			<tr style="border:2px solid black">
+				<td>
+					<span style="font-size:20px">
+						@item.Content
+					</span>
+					<span style="margin-left:10px; display:block">
+						@item.CreatedDate
+					</span>
+				<td>
+					<a asp-action="CreateChild" asp-route-id="@item.Id">Alt Not Ekle</a> |
+					<a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
+					<a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+				</td>
+				</td>
+
+			</tr>
+			@foreach (var itemChild in item.UserNoteChildrens)
+			{
+				<tr style="border:1px solid black">
+					<td>
+
+						<span style="font-size:19px; color:brown">
+							@itemChild.Content
+						</span>
+						<span style="display:block;">
+							@itemChild.CreatedDate
+						</span>
+					</td>
+
+					<td>
+						<a asp-action="EditChild" asp-route-id="@itemChild.Id">Düzenle</a> |
+						<a asp-action="DeleteChild" asp-route-id="@itemChild.Id">Sil</a>
+					</td>
+				</tr>
+
+			}
+
+		}
+	</tbody>
+</table>
