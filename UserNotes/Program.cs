@@ -4,8 +4,7 @@ using UserNotes.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<UserNotesContext>(options => options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=UserNotesDB;Encrypt=False;Trusted_Connection=True;"));
-
+builder.Services.AddInfrastructureServices();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
